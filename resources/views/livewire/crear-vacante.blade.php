@@ -1,4 +1,4 @@
-<div class="md:w-1/2 space-y-5">
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
     {{-- Titulo Vacantes --}}
     <div>
         <x-input-label for="titulo" :value="__('Título Vacante')" />
@@ -6,7 +6,7 @@
             id="titulo" 
             class="block mt-1 w-full" 
             type="text" 
-            name="titulo" 
+            wire:model="titulo" 
             :value="old('titulo')" 
         />
         <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
@@ -15,7 +15,7 @@
     <div>
         <x-input-label for="salario" :value="__('Salario Mensual')" />
         <select 
-            name="salario" 
+            wire:model="salario" 
             id="salario"
             class="
                 w-full 
@@ -29,15 +29,19 @@
                 dark:focus:ring-indigo-600 
                 rounded-md shadow-sm"
         >
-        
-        </select>    
+            <option> -- Seleccione -- </option>
+            @foreach ($salarios as $salario)
+                <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
+            @endforeach
+        </select>   
+        <x-input-error :messages="$errors->get('salario')" class="mt-2" /> 
     </div>
     {{-- Categoría --}}
     <div>
-        <x-input-label for="salario" :value="__('Salario Mensual')" />
+        <x-input-label for="categoria" :value="__('Categoría')" />
         <select 
-            name="salario" 
-            id="salario"
+            wire:model="categoria"  
+            id="categoria"
             class="
                 w-full 
                 border-gray-300 
@@ -50,7 +54,12 @@
                 dark:focus:ring-indigo-600 
                 rounded-md shadow-sm"
         >
-        </select>    
+            <option> -- Seleccione -- </option>
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+            @endforeach
+        </select> 
+        <x-input-error :messages="$errors->get('categoria')" class="mt-2" />    
     </div>
     {{-- Empresa --}}
     <div>
@@ -59,7 +68,7 @@
             id="empresa" 
             class="block mt-1 w-full" 
             type="text" 
-            name="empresa" 
+            wire:model="empresa" 
             :value="old('empresa')"
             placeholder="Empresa: ej. Netflix, Shopify, Uber" 
         />
@@ -73,7 +82,7 @@
             id="ultimo_dia" 
             class="block mt-1 w-full" 
             type="date" 
-            name="ultimo_dia" 
+            wire:model="ultimo_dia" 
             :value="old('ultimo_dia')" 
         />
         <x-input-error :messages="$errors->get('ultimo_dia')" class="mt-2" />
@@ -83,7 +92,7 @@
     <div>
         <x-input-label for="empresa" :value="__('Descripción del Trabajo')" />
         <textarea 
-            name="descripcion" 
+            wire:model="descripcion" 
             id="descripcion"
             placeholder="Descripción general del puesto"
             class="
@@ -108,7 +117,7 @@
             id="imagen" 
             class="block mt-1 w-full" 
             type="file" 
-            name="imagen" 
+            wire:model="imagen" 
         />
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>
@@ -116,4 +125,4 @@
     <x-primary-button>
         {{ __('Crear Vacante') }}
     </x-primary-button>
-</div>
+</form>
