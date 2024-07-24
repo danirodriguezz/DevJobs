@@ -9,7 +9,10 @@
             wire:model="titulo" 
             :value="old('titulo')" 
         />
-        <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
+        @error('titulo')
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('titulo')" class="mt-2" /> --}}
     </div>
     {{-- Salario mensual --}}
     <div>
@@ -33,8 +36,11 @@
             @foreach ($salarios as $salario)
                 <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
             @endforeach
-        </select>   
-        <x-input-error :messages="$errors->get('salario')" class="mt-2" /> 
+        </select>
+        @error('salario')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror   
+        {{-- <x-input-error :messages="$errors->get('salario')" class="mt-2" />  --}}
     </div>
     {{-- Categoría --}}
     <div>
@@ -59,7 +65,10 @@
                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
             @endforeach
         </select> 
-        <x-input-error :messages="$errors->get('categoria')" class="mt-2" />    
+        @error('categoria')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('categoria')" class="mt-2" />     --}}
     </div>
     {{-- Empresa --}}
     <div>
@@ -72,7 +81,10 @@
             :value="old('empresa')"
             placeholder="Empresa: ej. Netflix, Shopify, Uber" 
         />
-        <x-input-error :messages="$errors->get('empresa')" class="mt-2" />
+        @error('empresa')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('empresa')" class="mt-2" /> --}}
     </div>
     
     {{-- Último dia para presentarse --}}
@@ -85,7 +97,10 @@
             wire:model="ultimo_dia" 
             :value="old('ultimo_dia')" 
         />
-        <x-input-error :messages="$errors->get('ultimo_dia')" class="mt-2" />
+        @error('ultimo_dia')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('ultimo_dia')" class="mt-2" /> --}}
     </div>
 
     {{-- Descripción del Trabajo --}}
@@ -107,7 +122,10 @@
                 dark:focus:ring-indigo-600 
                 rounded-md shadow-sm"
         ></textarea>
-        <x-input-error :messages="$errors->get('descripcion')" class="mt-2" />
+        @error('descripcion')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('descripcion')" class="mt-2" /> --}}
     </div>
 
     {{-- Imagen --}}
@@ -118,8 +136,18 @@
             class="block mt-1 w-full" 
             type="file" 
             wire:model="imagen" 
+            accept=image/*
         />
-        <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+        <div class="my-5 w-80">
+            @if ($imagen)
+                Imagen:
+                <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen para vacante">
+            @endif
+        </div>
+        @error('imagen')
+        <livewire:mostrar-alerta :message="$message"/>
+        @enderror
+        {{-- <x-input-error :messages="$errors->get('imagen')" class="mt-2" /> --}}
     </div>
     
     <x-primary-button>
