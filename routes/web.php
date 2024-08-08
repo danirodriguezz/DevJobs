@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [VacantesController::class, 'index'])->middleware(['auth', 'verified'])->name('vacantes.index');
 Route::get('/vacantes/create', [VacantesController::class, 'create'])->middleware(['auth', 'verified'])->name('vacantes.create');
+Route::get('/vacantes/{vacante}/edit', [VacantesController::class, 'edit'])->middleware(['auth', 'verified'])->name('vacantes.edit');
+
 
 
 Route::middleware('auth')->group(function () {

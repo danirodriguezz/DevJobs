@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class VacantesController extends Controller
 {
@@ -41,9 +43,16 @@ class VacantesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vacante $vacante)
     {
-        //
+        // Verificamos que el $user->id == $vacante->user_id
+        if (Gate::allows('update', $vacante)){
+            return view('vacantes.edit', [
+                'vacante' => $vacante
+            ]);
+        }else{
+            return redirect()->route('vacantes.index');
+        }
     }
 
     /**
