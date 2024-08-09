@@ -7,6 +7,7 @@ use App\Models\Salario;
 use App\Models\Vacante;
 use Livewire\Component;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
 class EditarVacante extends Component
@@ -54,6 +55,7 @@ class EditarVacante extends Component
         // Comprobar si hay una nueva imagen
         if($this->imagen_nueva) {
             $imagen = $this->imagen_nueva->store('public/vacantes');
+            Storage::delete("public/vacantes/" . $vacante->imagen);
             $vacante->imagen = str_replace('public/vacantes/', '', $imagen);
         }
         // Asignar los nuevos valores
