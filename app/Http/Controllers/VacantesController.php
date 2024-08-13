@@ -14,7 +14,11 @@ class VacantesController extends Controller
      */
     public function index()
     {
-        return view('vacantes.index');
+        if(Gate::allows('viewAny', Vacante::class)) {
+            return view('vacantes.index');
+        } else {
+            abort(401);
+        }
     }
 
     /**
@@ -22,7 +26,11 @@ class VacantesController extends Controller
      */
     public function create()
     {
-        return view('vacantes.create');
+        if(Gate::allows('viewAny', Vacante::class)) {
+            return view('vacantes.create');
+        } else {
+            abort(401);
+        }
     }
 
     /**
