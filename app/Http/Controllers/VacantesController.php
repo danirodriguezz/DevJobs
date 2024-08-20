@@ -41,10 +41,14 @@ class VacantesController extends Controller
      */
     public function show(Vacante $vacante)
     {
-        $postulo = DB::table('candidatos')
-                    ->where('user_id', auth()->user()->id)
-                    ->where('vacantes_id', $vacante->id)
-                    ->get()->isEmpty();
+        if(auth()->user()) {
+            $postulo = DB::table('candidatos')
+                        ->where('user_id', auth()->user()->id)
+                        ->where('vacantes_id', $vacante->id)
+                        ->get()->isEmpty();
+        } else {
+            $postulo = false;
+        }
         return view('vacantes.show', [
             'vacante' => $vacante,
             'postulo' => $postulo
