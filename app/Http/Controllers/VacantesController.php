@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPSTORM_META\type;
 
 class VacantesController extends Controller
 {
@@ -38,8 +41,13 @@ class VacantesController extends Controller
      */
     public function show(Vacante $vacante)
     {
+        $postulo = DB::table('candidatos')
+                    ->where('user_id', auth()->user()->id)
+                    ->where('vacantes_id', $vacante->id)
+                    ->get()->isEmpty();
         return view('vacantes.show', [
-            'vacante' => $vacante
+            'vacante' => $vacante,
+            'postulo' => $postulo
         ]);
     }
 

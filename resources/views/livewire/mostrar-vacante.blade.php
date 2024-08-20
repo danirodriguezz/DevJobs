@@ -36,7 +36,14 @@
         </div>
     @endguest
 
-    @cannot('create', App\Models\Vacante::class)
-        <livewire:postular-vacante :vacante="$vacante">
-    @endcannot
+    @if (!$postulo)
+        <div class="mt-5 bg-gray-50 dark:bg-gray-700 border border-dashed dark:border-gray-700 p-5 text-center dark:text-gray-100">
+            <p>Ya has aplicado a esta vacante, ahora toca esperar una respuesta</p>
+        </div>
+    @else
+        @cannot('create', App\Models\Vacante::class)
+            <livewire:postular-vacante :vacante="$vacante">
+        @endcannot
+    @endif
+
 </div>
