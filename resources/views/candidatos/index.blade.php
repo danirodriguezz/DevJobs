@@ -13,7 +13,7 @@
                     <div class="md:flex md:justify-center p-5">
                         <ul class="divide-y divide-gray-200 w-full">
                             @forelse ($vacante->candidatos as $candidato)
-                                <li class="p-3 flex items-center">
+                                <li class="p-3 md:flex md:items-center">
                                     <div class="flex-1">
                                         <p class="text-xl font-medium text-gray-800 dark:text-gray-300 mb-1">
                                             {{ $candidato->user->name }}
@@ -27,7 +27,7 @@
                                     </div>
                                     <div>
                                         <a 
-                                            class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                            class="md:inline-flex md:items-center block shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 text-center mt-3 md:mt-0"
                                             href="{{ asset('storage/cv/' . $candidato->cv) }}"
                                             target="_blank"
                                             rel="noreferrer noopener"

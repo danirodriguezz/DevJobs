@@ -1,4 +1,4 @@
-<div class="bg-gray-100 dark:bg-gray-900 py-10">
+<div class="bg-gray-100 dark:bg-gray-900 py-10 px-5">
     <h2 class="text-2xl md:text-4xl text-gray-600 dark:text-gray-200 text-center font-extrabold my-5">Buscar y Filtrar Vacantes</h2>
 
     <div class="max-w-7xl mx-auto">

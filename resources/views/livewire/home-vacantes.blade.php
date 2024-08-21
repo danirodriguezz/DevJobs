@@ -1,7 +1,7 @@
 <div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
-            <h3 class="font-extrabold text-4xl text-gray-700 dark:text-gray-100 mb-12">Nuestras Ofertas Disponibles</h3>
+            <h3 class="font-extrabold text-4xl text-gray-700 dark:text-gray-100 mb-12 text-center">Nuestras Ofertas Disponibles</h3>
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 divide-y divide-gray-300">
                 @forelse ($vacantes as $vacante)
                     <div class="md:flex md:justify-between md:items-center py-5">
